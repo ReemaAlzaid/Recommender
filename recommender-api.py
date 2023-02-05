@@ -19,10 +19,7 @@ app = Flask(__name__)
 def nameRoute():
 
     #fetching the global response variable to manipulate inside the function
-    global response
-
-    #checking the request type we get from the app 
-    if(request.method == 'POST'):
+        global response
         ProductsHistory = request.data #getting the response data
         
         ProductsHistory_data = json.loads(ProductsHistory.decode('utf-8')) #converting it from json to key value pair
@@ -49,14 +46,14 @@ def nameRoute():
 
         overview_matrix = tfidf.fit_transform(Products['SubCategory'])
 
-        print(popular_products)
+        #print(popular_products)
         global similarity_matrix
         similarity_matrix = cosine_similarity(overview_matrix,overview_matrix) #Finds all category that matches each other 
 
         global MostPurchased
 
         MostPurchased = popular_products.loc[popular_products['Count']. idxmax()]
-        print(MostPurchased)
+        #print(MostPurchased)
         global mapping
         mapping = pd.Series(Products.index,index = Products['SubCategory'])
         #return "History received"
@@ -64,5 +61,5 @@ def nameRoute():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',)
 
