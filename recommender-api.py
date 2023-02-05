@@ -59,42 +59,10 @@ def nameRoute():
         print(MostPurchased)
         global mapping
         mapping = pd.Series(Products.index,index = Products['SubCategory'])
-        return "History received"
-    else:
+        #return "History received"
         return MostPurchased['SubCategory']
-        def recommend_Products(Products_SubCategory):
-                product_index = mapping[Products_SubCategory]
-                if (product_index.size > 1): #check if there is only one product of that product subcategory
-                    seen = set()
-                    ProductIndex = []
-                    for x in mapping[Products_SubCategory]:
-                        if x not in seen:
-                            ProductIndex.append(x)
-                            seen.add(x)
-                else:
-                    Barcodes = Products['Barcode'].iloc[product_index.size] #return the only one product
-                    return Barcodes
-
-                similarity_score = []
-                for x in ProductIndex:
-                    similarity_score=list(enumerate(similarity_matrix[x])) #gets the similar subcategory based on the number of purchase
-
-                sorted_similarity_score=[]
-                sorted_similarity_score = sorted(similarity_score, key=lambda x: x[1], reverse=True) #sort them
-
-                exact_score=sorted_similarity_score[0:len(ProductIndex)]
-
-
-                matchedProducts = [i[0] for i in exact_score] 
-                print(list(Products['Barcode'].iloc[matchedProducts])[1])
-
-                return list(Products['Barcode'].iloc[matchedProducts]) #return prodcut barcode using the mapping series
-
-        RecommendedItems=[]
-        RecommendedItems=recommend_Products(MostPurchased['SubCategory'])
-        return jsonify({'Barcodes' : RecommendedItems}) 
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run()
 
