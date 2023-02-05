@@ -76,7 +76,6 @@ pyparsing==3.0.7
 pyrsistent==0.18.1
 python-dateutil==2.8.2
 pytz==2022.2.1
-pywinpty==1.1.6
 pyzmq==22.3.0
 s3fs==2022.8.2
 scikit-learn==1.1.2
