@@ -15,7 +15,7 @@ response = ''
 app = Flask(__name__)
 
 #route to entertain our post and get request from flutter app
-@app.route('/name', methods = ['GET', 'POST'])
+@app.route('/name', methods = ['POST'])
 def nameRoute():
 
     #fetching the global response variable to manipulate inside the function
@@ -64,5 +64,5 @@ def nameRoute():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
 
